@@ -1,0 +1,64 @@
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<p>## TAREA 6.2 
+
+# 1.CARGAR EN UN DF LLAMADA fullmat EL ARCHIVO Prac_Uni6/maices/meta/maizteocintle_SNP50k_meta_extended.txt
+
+fullmat <- read.delim("Prac_Uni6/maices/meta/maizteocintle_SNP50k_meta_extended.txt")
+
+# 2.¿QUE TIPO DE OBJETO CREAMOS AL CARGAR LA BASE? DATA FRAME
+class(fullmat)
+
+# 3. ¿COMO SE VEN LAS PRIMERAS 6 LINEAS DEL ARCHIVO?
+head(fullmat)
+
+# 4. ¿CUANTAS MUESTRAS HAY? 165
+nrow(fullmat)
+
+# 5. ¿DE CUANTOS ESTADOS SE TIENE MUESTRAS? 19
+length(levels(fullmat$Estado))
+
+# 6. ¿CUANTAS MUESTRAS FUERON COLECTADAS ANTES DE 1980? 8
+sum(fullmat$A.o._de_colecta<1980, na.rm=TRUE)
+
+# 7. ¿CUANTAS MUESTRAS HAY DE CADA RAZA?
+table(fullmat$Raza)
+
+# 8. ¿EN PROMEDIO A QUE ALTITUD FUERON COLECTADAS LAS MUESTRAS? 1519.242
+mean(fullmat$Altitud)
+
+# 9. ¿Y A QUE ALTUTUD MAXIMA Y MINIMA FUERON COLECTADAS?MAXIMA 2769 MINIMA 5
+max(fullmat$Altitud)
+min(fullmat$Altitud)
+
+# 10. CREAR UNA NUEVA DF DE DATOS SOLO CON LAS MUESTRAS DE LA RAZA OLOTILLO
+razaolotillo<-fullmat[fullmat$Raza=="Olotillo", ]
+
+# 11. CREAE UNA NUEVA DF DE DATOS SOLO CON LAS MUESTRAS DE LAS RAZAS REVENTADOR, JALA Y ANCHO
+x <-fullmat$Raza %in% c("Reventador", "Jala", "Ancho")
+ReventadorJalaAncho<-fullmat[x, ]
+
+# ESCRIBE LA MATRIZ ANTERIOR A UN ARCHIVO LLAMADO "submat.cvs" EN /meta
+write.csv(ReventadorJalaAncho, file = paste0(getwd(), "Prac_Uni6/maices/meta/submat.cvs"))
+write.csv(ReventadorJalaAncho, file = "Prac_Uni6/maices/submat.cvs")
+</p>
+
+<!--begin.rcode
+summary(cars)
+end.rcode-->
+
+<p>You can also embed plots, for example:</p>
+
+<!--begin.rcode fig.width=7, fig.height=6
+plot(cars)
+end.rcode-->
+
+</body>
+</html>
+
